@@ -1,0 +1,273 @@
+
+/* Basic reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.sidebar {
+  width: 180px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+.node1 {
+  background-color: rgb(5, 152, 201);
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node2 {
+  background-color: green;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node3 {
+  background-color: #dda0dd;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node4 {
+  background-color: #f7ca88;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node5 {
+  background-color: #b9b903;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node6 {
+  background-color: #2465d6;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node7 {
+  background-color: #d62477;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node8 {
+  background-color: #d65624;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node9 {
+  background-color: #cc7d22;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node10 {
+  background-color: #db2727;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node11 {
+  background-color: #66f0d9;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node12 {
+  background-color: #7724d6;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+.node13 {
+  background-color: #92d624;
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+}
+
+.dropdown {
+  margin-bottom: 10px;
+}
+
+.dropdown-header {
+  background-color: #444;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.dropdown-content {
+  margin-top: 5px;
+}
+
+.node.inject-node {
+  background-color: #007bff;
+}
+
+.node.debug-node {
+  background-color: #28a745;
+}
+
+.canvas {
+  flex-grow: 1;
+  position: relative;
+  background-color: #fff;
+  overflow: auto; /* Ensure overflow handling */
+}
+
+.react-flow__renderer {
+  height: 100%;
+}
+
+.react-flow__node {
+  padding: 10px;
+  border-radius: 3px;
+  background-color:#fff;
+  width: 185px;
+  border: 1px solid black;
+  font-size: 12px;
+  text-align: center;
+}
+
+.react-flow__edge {
+  stroke: yellow;
+  stroke-width: 2px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+}
+
+.editor {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Align heading and canvas vertically */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.deploy-button {
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.deploy-button:hover {
+  background-color: #218838;
+}
+
+.icon-container {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.text-container {
+  flex-grow: 1; /* Allow text container to grow */
+}
