@@ -2,23 +2,23 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const LogSideBox = ({ data, onClose }) => {
-  const [messages, setMessages] = useState('');
+  // const [messages, setMessages] = useState('');
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.post('http://localhost:3000/consume', {
-          topic: data.topic,
-          groupId: data.groupId,
-        });
-        setMessages(response.data.join('\n'));
-      } catch (error) {
-        console.error('Error fetching messages:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchMessages = async () => {
+  //     try {
+  //       const response = await axios.post('http://localhost:3000/consume', {
+  //         topic: data.topic,
+  //         groupId: data.groupId,
+  //       });
+  //       setMessages(response.data.join('\n'));
+  //     } catch (error) {
+  //       console.error('Error fetching messages:', error);
+  //     }
+  //   };
 
-    fetchMessages();
-  }, [data.topic, data.groupId]);
+  //   fetchMessages();
+  // }, [data.topic, data.groupId]);
 
   return (
     <div style={{ width: '300px', backgroundColor: '#333', padding: '20px', borderLeft: '1px solid #ccc', position: 'fixed', top: 0, right: 0, height: '40vh', zIndex: 1000 }}>

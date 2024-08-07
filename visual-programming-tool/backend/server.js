@@ -1,12 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { consumeMessages } = require('./routes/cnKafkaConsumer'); // Import from cnKafkaConsumer.js
 const {
   connectProducer,
   connectConsumer,
   connectAdmin,
   createTopic,
   produceMessage,
-  consumeMessages,
 } = require('./routes/kafka');
 
 const app = express();

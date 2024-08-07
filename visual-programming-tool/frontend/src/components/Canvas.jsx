@@ -68,7 +68,7 @@ const Canvas = () => {
   const onConnect = (params) => setEdges((eds) => addEdge(params, eds));
 
   const handleClose = () => {
-    setSelectedNode(null);
+    setSelectedNode(null);  
   };
 
   const handleDone = (topic, groupId) => {
@@ -76,7 +76,7 @@ const Canvas = () => {
       ...prev,
       [selectedNode]: { topic, groupId }
     }));
-    setSelectedNode(null);
+    // setSelectedNode(null);
   };
 
   const handleDeploy = async () => {
@@ -87,6 +87,7 @@ const Canvas = () => {
       console.error('Deployment error:', error);
     }
   };
+
 
   return (
     <div style={{ height: '100vh', display: 'flex' }}>
