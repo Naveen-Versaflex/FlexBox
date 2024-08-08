@@ -14,7 +14,7 @@ import RunCampaignNode from './RunCampaignNode';
 import PushNotificationLeadsNode from './PushNotificationLeadsNode';
 import DatabaseInsertionNode from './DatabaseInsertionNode';
 import SideBox from './SideBox';
-import axios from 'axios';
+import LogSideBox from './LogSideBox';
 
 const nodeTypes = {
   input: InjectNode,
@@ -40,6 +40,7 @@ const Canvas = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [selectedNode, setSelectedNode] = useState(null);
   const [nodeData, setNodeData] = useState({});
+  const [logMessages, setLogMessages] = useState([]);
 
   const onDrop = useCallback((event) => {
     event.preventDefault();
@@ -58,6 +59,7 @@ const Canvas = () => {
 
   const handleNodeDoubleClick = (nodeId) => {
     setSelectedNode(nodeId);
+    //console.log(nodeId)
   };
 
   const onDragOver = (event) => {
@@ -76,18 +78,20 @@ const Canvas = () => {
       ...prev,
       [selectedNode]: { topic, groupId }
     }));
-    // setSelectedNode(null);
   };
 
-  const handleDeploy = async () => {
-    try {
-      // You can add any additional deployment logic here
-      alert('Deployed successfully');
-    } catch (error) {
-      console.error('Deployment error:', error);
-    }
+  const handleFetchMessages = (messages) => {
+    setLogMessages(messages);
   };
 
+  // const handleDeploy = async () => {
+  //   try {
+  //     // You can add any additional deployment logic here
+  //     alert('Deployed successfully');
+  //   } catch (error) {
+  //     console.error('Deployment error:', error); 
+  //   }
+  // };
 
   return (
     <div style={{ height: '100vh', display: 'flex' }}>
@@ -116,7 +120,10 @@ const Canvas = () => {
         </ReactFlow>
       </div>
       {selectedNode && (
-        <SideBox onClose={handleClose} onDone={handleDone} />
+        <SideBox onClose={handleClose} onDone={handleDone} onFetchMessages={handleFetchMessages} />
+      )}
+      {logMessages.length > 0 && (
+        <LogSideBox messages={logMessages} onClose={() => setLogMessages([])} />
       )}
     </div>
   );

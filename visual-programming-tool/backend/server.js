@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import cors
 const { consumeMessages } = require('./routes/cnKafkaConsumer'); // Import from cnKafkaConsumer.js
 const {
   connectProducer,
@@ -11,6 +12,7 @@ const {
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors()); // Enable CORS
 
 app.post('/produce', async (req, res) => {
   const { topic, message } = req.body;

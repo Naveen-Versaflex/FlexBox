@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-const SideBox = ({ onClose, onDone }) => {
+const SideBox = ({ onClose, onDone, onFetchMessages }) => {
   const [topic, setTopic] = useState('');
   const [groupId, setGroupId] = useState('');
 
-  const handleDone = () => {
+  const handleDone = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/consume', {
+        topic,
+        groupId,
+      });
+      onFetchMessages(response.data); // Pass the fetched messages to the callback
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+    }
     onDone(topic, groupId);
   };
 

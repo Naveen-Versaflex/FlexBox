@@ -6,6 +6,7 @@ const LogNode = ({ data }) => {
   const [showSideBox, setShowSideBox] = useState(false);
 
   const handleDoubleClick = () => {
+    preventDefault();
     setShowSideBox(true);
   };
 
