@@ -1,16 +1,5 @@
-// kafka.js
 
-const { Kafka } = require('kafkajs');
-
-const kafka = new Kafka({
-  clientId: 'my-app',
-  brokers: ['localhost:9096'],
-  retry: {
-    initialRetryTime: 300,
-    retries: 10,
-  },
-  requestTimeout: 30000,
-});
+const { kafka } = require('./cnKafkaConsumer'); // Import the Kafka client
 
 const producer = kafka.producer();
 const admin = kafka.admin();
@@ -68,7 +57,6 @@ const produceMessage = async (topic, message) => {
 };
 
 module.exports = {
-  kafka, // Export the Kafka client
   connectProducer,
   connectConsumer,
   connectAdmin,

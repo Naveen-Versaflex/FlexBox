@@ -1,5 +1,11 @@
+// cnKafkaConsumer.js
 
-const { kafka } = require('./kafka'); // Import the Kafka client from kafka.js
+const { Kafka } = require('kafkajs');
+
+const kafka = new Kafka({
+  clientId: 'my-consumer',
+  brokers: ['localhost:9096'],
+});
 
 const consumeMessages = async (topic, groupId) => {
   const consumer = kafka.consumer({ groupId });
@@ -27,4 +33,4 @@ const consumeMessages = async (topic, groupId) => {
   }
 };
 
-module.exports = { consumeMessages };
+module.exports = { kafka, consumeMessages };
