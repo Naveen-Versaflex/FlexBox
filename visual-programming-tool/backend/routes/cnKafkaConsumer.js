@@ -34,3 +34,4 @@ const consumeMessages = async (topic, groupId) => {
 };
 
 module.exports = { kafka, consumeMessages };
+ 
