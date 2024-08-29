@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ReactFlow, { MiniMap, Controls, Background, addEdge, useEdgesState, useNodesState } from 'react-flow-renderer';
 import CnKafkaConsumerNode from './CnKafkaConsumerNode';
 import InjectNode from './InjectNode';
@@ -15,6 +15,7 @@ import PushNotificationLeadsNode from './PushNotificationLeadsNode';
 import DatabaseInsertionNode from './DatabaseInsertionNode';
 import SideBox from './SideBox';
 import LogSideBox from './LogSideBox';
+import io from 'socket.io-client';
 
 const nodeTypes = {
   input: InjectNode,
@@ -41,6 +42,26 @@ const Canvas = () => {
   const [selectedNode, setSelectedNode] = useState(null);
   const [nodeData, setNodeData] = useState({});
   const [logMessages, setLogMessages] = useState([]);
+  const [socket, setSocket] = useState(null);
+  const name="naveen1";
+
+  useEffect(() => {
+    // Initialize WebSocket connection
+    const socket = io('http://localhost:3000');
+    setSocket(socket);
+
+    // Handle incoming messages
+    socket.on('newMessage', (message) => {
+      setLogMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    // Clean up WebSocket connection
+    return () => socket.disconnect();
+  }, []);
+
+  const handleNodeDoubleClick = (nodeId) => {
+    setSelectedNode(nodeId);
+  };
 
   const onDrop = useCallback((event) => {
     event.preventDefault();
@@ -56,11 +77,6 @@ const Canvas = () => {
 
     setNodes((nds) => nds.concat(newNode));
   }, [setNodes]);
-
-  const handleNodeDoubleClick = (nodeId) => {
-    setSelectedNode(nodeId);
-    //console.log(nodeId)
-  };
 
   const onDragOver = (event) => {
     event.preventDefault();
@@ -78,20 +94,13 @@ const Canvas = () => {
       ...prev,
       [selectedNode]: { topic, groupId }
     }));
+    
+    // Subscribe to the topic using WebSocket
+    if (socket && topic && groupId) {
+      socket.emit('joinRoom', { topic, groupId });
+    }
   };
 
-  const handleFetchMessages = (messages) => {
-    setLogMessages(messages);
-  };
-
-  // const handleDeploy = async () => {
-  //   try {
-  //     // You can add any additional deployment logic here
-  //     alert('Deployed successfully');
-  //   } catch (error) {
-  //     console.error('Deployment error:', error); 
-  //   }
-  // };
 
   return (
     <div style={{ height: '100vh', display: 'flex' }}>
@@ -118,9 +127,9 @@ const Canvas = () => {
           <Controls />
           <Background />
         </ReactFlow>
-      </div>
+        </div>
       {selectedNode && (
-        <SideBox onClose={handleClose} onDone={handleDone} onFetchMessages={handleFetchMessages} />
+        <SideBox onClose={handleClose} onDone={handleDone} name={name}/>
       )}
       {logMessages.length > 0 && (
         <LogSideBox messages={logMessages} onClose={() => setLogMessages([])} />

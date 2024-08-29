@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-const SideBox = ({ onClose, onDone, onFetchMessages }) => {
+const SideBox = ({ onClose, onDone,name }) => {
   const [topic, setTopic] = useState('');
   const [groupId, setGroupId] = useState('');
 
-  const handleDone = async () => {
-    try {
-      const response = await axios.post('http://localhost:3000/consume', {
-        topic,
-        groupId,
-      });
-      onFetchMessages(response.data); // Pass the fetched messages to the callback
-    } catch (error) {
-      console.error('Error fetching messages:', error);
-    }
+  const handleDone = () => {
     onDone(topic, groupId);
   };
 
@@ -34,8 +24,11 @@ const SideBox = ({ onClose, onDone, onFetchMessages }) => {
           <input type="text" value={groupId} onChange={(e) => setGroupId(e.target.value)} />
         </div>
       </div>
+      <div style={{color:"white"}}>
+         {name}
+      </div>
     </div>
-  );
+  );  
 };
 
 export default SideBox;
